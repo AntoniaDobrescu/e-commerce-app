@@ -1,0 +1,28 @@
+.displayed {
+    background: red;
+}
+
+.notDisplayed {
+    background: blue;
+}
+
+
+.button {
+    background-color: red;
+
+    &--notDisplayed {
+        display: none;
+    }
+}
+
+.image {
+    width: 200px;
+    height: 200px;
+}
+
+.productContainer {
+    width: 100px;
+    height: 100px;
+    background-color: aquamarine;
+    border: 2px solid #000000;
+}

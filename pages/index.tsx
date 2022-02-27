@@ -5,6 +5,13 @@ import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
 import { GetStaticProps } from 'next'
+import Image from 'next/image';
+import Products from '../components/products/products';
+import React, { useEffect } from 'react';
+import { useAppContext } from '../context/productsContext';
+import ProductFeatured from '../components/productFeatured/productFeatured';
+import CategoryFilter from '../components/categoryFilter/categoryFilter';
+import PriceFilter from '../components/priceFilter/priceFilter';
 
 export default function Home({
                                  allPostsData
@@ -15,33 +22,41 @@ export default function Home({
         id: string
     }[]
 }) {
+    const {getInitialProductsData,
+        categoryFilterOptions,
+        changeCategoryFilter,
+        changePriceFilter,
+    } = useAppContext();
+
+    useEffect(() => {
+        getInitialProductsData();
+    }, [])
+
     return (
         <Layout home>
             <Head>
-                <title>{siteTitle}</title>
+                <title>test</title>
             </Head>
-            <section className={utilStyles.headingMd}>
-                <p>[Your Self Introduction]</p>
-                <p>
-                    (This is a sample website - you’ll be building a site like this in{' '}
-                    <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-                </p>
+
+            <section>
+                {
+                    categoryFilterOptions
+                    ? <CategoryFilter
+                            categoryFilterOptions={categoryFilterOptions}
+                            changeCategoryFilter={changeCategoryFilter}
+                        />
+                        : null
+                }
             </section>
-            <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-                <h2 className={utilStyles.headingLg}>Blog</h2>
-                <ul className={utilStyles.list}>
-                    {allPostsData.map(({ id, date, title }) => (
-                        <li className={utilStyles.listItem} key={id}>
-                            <Link href={`/posts/${id}`}>
-                                <a>{title}</a>
-                            </Link>
-                            <br />
-                            <small className={utilStyles.lightText}>
-                                <Date dateString={date} />
-                            </small>
-                        </li>
-                    ))}
-                </ul>
+
+            <section>
+                <PriceFilter changePriceFilter={changePriceFilter} />
+            </section>
+            <section>
+                <ProductFeatured />
+            </section>
+            <section>
+                <Products/>
             </section>
         </Layout>
     )
