@@ -11,6 +11,7 @@ import { useAppContext } from '../context/productsContext';
 import ProductFeatured from '../components/productFeatured/productFeatured';
 import CategoryFilter from '../components/categoryFilter/categoryFilter';
 import PriceFilter from '../components/priceFilter/priceFilter';
+import OrderController from '../components/orderController/orderController';
 
 export default function Home({
                                  allPostsData
@@ -60,6 +61,7 @@ export default function Home({
             </section>
 
             <section>
+                <OrderController />
                 <Products/>
             </section>
         </Layout>

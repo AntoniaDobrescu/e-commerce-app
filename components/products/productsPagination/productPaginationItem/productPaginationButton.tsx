@@ -22,8 +22,6 @@ const ProductPaginationButton: FC<Readonly<Props>> = (
     const handleClick = () => {
         onHandleClick(productPaginationItem)
     }
-    console.log('productPaginationItem: ', productPaginationItem);
-
     return (
         <li >
             <button className={classNames(style.button, {

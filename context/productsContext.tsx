@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import getDataMock from '../mock';
+import sortBy from 'lodash.sortby';
 
 //remove Props from Product
 import { PriceFilterModel, Product } from '../models/models';
@@ -63,6 +64,24 @@ const defaultSelectedPaginationProducts: ProductPaginationItem = {
     label: 1,
 }
 
+export type SortDirection = 'Ascending' | 'Descending';
+export type SortType = 'Price' | 'Alphabetically';
+
+type SortingDataObject = {
+    direction: SortDirection,
+    type: SortType
+}
+
+const generateSortedProductsList = (productList: Product[], sortingDataObject: SortingDataObject) => {
+    if (sortingDataObject) {
+        if (sortingDataObject.direction === 'Ascending') {
+            return sortBy(productList, [sortingDataObject.type === 'Price' ? 'price' : 'name'])
+        } else {
+            return sortBy(productList, [sortingDataObject.type === 'Price' ? 'price' : 'name']).reverse();
+        }
+    }
+}
+
 export function AppWrapper({children}) {
     const [productsList, setProductsList] = useState<Array<Product> | null>(null);
     const [initialProductsList, setInitialProductsList] = useState<Array<Product> | null>(null);
@@ -73,6 +92,13 @@ export function AppWrapper({children}) {
     const [priceFilter, setPriceFilter] = useState<PriceFilterModel | null>(null);
     const [selectedPaginationProducts, setSelectedPaginationProducts] = useState<ProductPaginationItem>(
         defaultSelectedPaginationProducts)
+    const [sortingDataObject, setSortingDataObject] = useState<SortingDataObject | null>(null);
+
+    useEffect(() => {
+        setProductsList((currentProductList: Product[]) => {
+            return generateSortedProductsList(currentProductList, sortingDataObject)
+        })
+    }, [sortingDataObject])
 
     const setSelectedPaginationToDefault = useCallback(() => {
         setSelectedPaginationProducts(defaultSelectedPaginationProducts)
@@ -153,6 +179,7 @@ export function AppWrapper({children}) {
             selectedPaginationProducts,
             setSelectedPaginationProducts,
             setSelectedPaginationToDefault,
+            setSortingDataObject,
         };
     }, [
         productFeatured,
@@ -165,6 +192,7 @@ export function AppWrapper({children}) {
         selectedPaginationProducts,
         setSelectedPaginationProducts,
         setSelectedPaginationToDefault,
+        setSortingDataObject,
     ])
 
     return (
