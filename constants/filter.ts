@@ -1,6 +1,6 @@
-import { PriceFilter } from '../context/productsContext';
+import { PriceFilterModel } from '../models/models';
 
-export const defaultPriceOptions: PriceFilter[] = [
+export const defaultPriceOptions: PriceFilterModel[] = [
     {
         min: 0,
         max: 20,

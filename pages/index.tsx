@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 import Link from 'next/link'
 import Date from '../components/date'
@@ -26,6 +25,7 @@ export default function Home({
         categoryFilterOptions,
         changeCategoryFilter,
         changePriceFilter,
+        setSelectedPaginationToDefault,
     } = useAppContext();
 
     useEffect(() => {
@@ -37,24 +37,28 @@ export default function Home({
             <Head>
                 <title>test</title>
             </Head>
-
+            <section>
+                {/*<ProductFeatured />*/}
+            </section>
             <section>
                 {
                     categoryFilterOptions
                     ? <CategoryFilter
                             categoryFilterOptions={categoryFilterOptions}
                             changeCategoryFilter={changeCategoryFilter}
+                            setSelectedPaginationToDefault={setSelectedPaginationToDefault}
                         />
                         : null
                 }
             </section>
 
             <section>
-                <PriceFilter changePriceFilter={changePriceFilter} />
+                <PriceFilter
+                    setSelectedPaginationToDefault={setSelectedPaginationToDefault}
+                    changePriceFilter={changePriceFilter}
+                />
             </section>
-            <section>
-                <ProductFeatured />
-            </section>
+
             <section>
                 <Products/>
             </section>

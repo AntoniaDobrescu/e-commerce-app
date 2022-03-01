@@ -1,4 +1,4 @@
-import '../styles/global.css'
+import '../styles/index.scss'
 import { AppProps } from 'next/app'
 import { AppWrapper } from '../context/productsContext';
 

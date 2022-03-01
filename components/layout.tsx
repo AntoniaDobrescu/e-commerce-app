@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.scss'
-import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import Header from './header/header';
 import mockImage from '../mock/mockPhoto/mock1.jpg';
@@ -43,16 +42,16 @@ export default function Layout({
                                 <Image
                                     priority
                                     src="/images/profile.jpg"
-                                    className={utilStyles.borderCircle}
+                                    // className={utilStyles.borderCircle}
                                     height={108}
                                     width={108}
                                     alt={name}
                                 />
                             </a>
                         </Link>
-                        <h2 className={utilStyles.headingLg}>
+                        <h2>
                             <Link href="/">
-                                <a className={utilStyles.colorInherit}>{name}</a>
+                                <a >{name}</a>
                             </Link>
                         </h2>
                     </>
@@ -66,8 +65,6 @@ export default function Layout({
                     </Link>
                 </div>
             )}
-            <Image src={mockImage} height={108}
-                   width={108}/>
         </div>
     )
 }

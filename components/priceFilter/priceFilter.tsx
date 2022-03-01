@@ -4,16 +4,18 @@ import { PriceFilterModel } from '../../models/models';
 import PriceFilterItem from './priceFilterItem/priceFilterItem';
 
 export interface PriceOption extends PriceFilterModel {
-    isChecked: boolean
+    isChecked: boolean;
 }
 
 interface Props {
     changePriceFilter: (priceFilter: PriceFilterModel | null) => void;
+    setSelectedPaginationToDefault: () => void;
 }
 
 const PriceFilter: FC<Readonly<Props>> = (
     {
-        changePriceFilter
+        changePriceFilter,
+        setSelectedPaginationToDefault,
     }
 ) => {
     const [priceOptions, setPriceOptions] = useState<PriceOption[]>(() => {
@@ -38,6 +40,7 @@ const PriceFilter: FC<Readonly<Props>> = (
         })
 
         setPriceOptions(newPriceOptions);
+        setSelectedPaginationToDefault();
     }, [])
 
     useEffect(() => {

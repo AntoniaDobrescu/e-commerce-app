@@ -8,20 +8,16 @@ interface Dimensions {
     readonly height: number;
 }
 
-interface ItemRecommendation {
+export interface ItemRecommendation {
     readonly src: string;
     readonly alt: string;
 }
 
-interface Recommendations {
-    [index: number]: ItemRecommendation;
-}
-
-interface Details {
+export interface Details {
     readonly dimensions: Dimensions;
     readonly size: number;
     readonly description: string;
-    readonly recommendations: Array<Recommendations>;
+    readonly recommendations: ItemRecommendation[];
 }
 
 export interface Product {

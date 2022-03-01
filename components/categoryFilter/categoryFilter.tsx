@@ -9,12 +9,14 @@ export interface CategoryOption {
 interface Props {
     categoryFilterOptions: string[],
     changeCategoryFilter: (value: string[]) => void,
+    setSelectedPaginationToDefault: () => void,
 }
 
 const CategoryFilter: FC<Readonly<Props>> = memo((
     {
         categoryFilterOptions,
-        changeCategoryFilter
+        changeCategoryFilter,
+        setSelectedPaginationToDefault,
     }
 ) => {
     const [categoryOptions, setCategoryOptions] = useState<CategoryOption[]>(() => {
@@ -42,6 +44,7 @@ const CategoryFilter: FC<Readonly<Props>> = memo((
         })
 
         setCategoryOptions(newCategoryOptions);
+        setSelectedPaginationToDefault();
     }, [])
 
     useEffect(() => {

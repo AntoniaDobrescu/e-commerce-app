@@ -1,0 +1,64 @@
+@import "styles/variables";
+
+.imageContainer {
+  position: relative;
+  height: 240px;
+  max-width: 386px;
+  width: 100%;
+  margin-top: 35px;
+}
+
+.recommendationsImage {
+  position: relative;
+  height: 200px;
+  width: 200px;
+}
+
+.productFeaturedContainer {
+  box-sizing: border-box;
+  padding: 32px 18px 49px;
+  border-bottom: 4px solid $color-accent-1;
+  //width: 100%;
+  margin: 0 auto;
+
+  max-width: 386px;
+}
+
+.productFeaturedTitle {
+  font-family: $main-font;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.photoOfDayContainer {
+  position: relative;
+
+  .text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: $color-accent-2;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: $main-font;
+    font-weight: 700;
+    line-height: 16px;
+    padding: 21px 60px 21px 47px;
+    border: 1px solid $color-accent-1;
+  }
+}
+
+.button {
+  box-sizing: border-box;
+  background-color: $color-accent-3;
+  color: $color-accent-2;
+  font-family: $main-font;
+  font-size: 23px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 43px;
+  width: 100%;
+  margin-top: 30px;
+}

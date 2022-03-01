@@ -28,8 +28,6 @@ const filterByPrice = (priceFilter: null | PriceFilterModel, productsList: Produ
         return productsList;
     }
 
-    console.log('productsList: ', productsList);
-    console.log('priceFilter: ', priceFilter)
     let newProducts = productsList.filter(product => {
         return product.price > priceFilter.min && product.price < priceFilter.max
     })
@@ -47,15 +45,64 @@ const generateCategoriesByList = (productsList: Product[]): string[] => {
     return Array.from(categorySet) as string[];
 }
 
+const filterByRangeIndex = (productsList: Product[], selectedPaginationProducts: ProductPaginationItem): Product[] => {
+    return productsList.slice(selectedPaginationProducts.startIndex, selectedPaginationProducts.endIndex);
+}
+
+export const NumberOfProductsPerPage = 6;
+
+export interface ProductPaginationItem {
+    startIndex: number;
+    endIndex: number;
+    label: number;
+}
+
+const defaultSelectedPaginationProducts: ProductPaginationItem = {
+    startIndex: 0,
+    endIndex: NumberOfProductsPerPage,
+    label: 1,
+}
+
 export function AppWrapper({children}) {
     const [productsList, setProductsList] = useState<Array<Product> | null>(null);
     const [initialProductsList, setInitialProductsList] = useState<Array<Product> | null>(null);
     const [productFeatured, setProductFeatured] = useState<Product | null>(null);
+
     const [categoryFilterOptions, setCategoryFilterOptions] = useState<string[] | null>(null);
     const [categoryFilter, setCategoryFilter] = useState([]);
     const [priceFilter, setPriceFilter] = useState<PriceFilterModel | null>(null);
+    const [selectedPaginationProducts, setSelectedPaginationProducts] = useState<ProductPaginationItem>(
+        defaultSelectedPaginationProducts)
 
-    console.log('priceFilter: ', priceFilter);
+    const setSelectedPaginationToDefault = useCallback(() => {
+        setSelectedPaginationProducts(defaultSelectedPaginationProducts)
+    }, [])
+
+    const paginationProductsList = useMemo(() => {
+        if (!productsList) {
+            return [];
+        }
+
+        const value: ProductPaginationItem[] = [];
+
+        for (let i = 0; i < (productsList.length / NumberOfProductsPerPage); i++) {
+            value.push({
+                label: (i + 1),
+                startIndex: NumberOfProductsPerPage * i,
+                endIndex: NumberOfProductsPerPage * (i + 1)
+            })
+        }
+
+        return value;
+    }, [productsList])
+
+    const productsListPage = useMemo(() => {
+        if (!productsList) {
+            return []
+        }
+
+        return filterByRangeIndex(productsList, selectedPaginationProducts);
+    }, [productsList, selectedPaginationProducts]);
 
     const changeCategoryFilter = useCallback((value: string[]) => {
         setCategoryFilter(value);
@@ -95,19 +142,29 @@ export function AppWrapper({children}) {
     }, [])
 
     const value = useMemo(() => {
-        return {productsList,
+        return {
             productFeatured,
             getInitialProductsData,
             categoryFilterOptions,
             changeCategoryFilter,
             changePriceFilter,
+            paginationProductsList,
+            productsListPage,
+            selectedPaginationProducts,
+            setSelectedPaginationProducts,
+            setSelectedPaginationToDefault,
         };
-    }, [productsList,
+    }, [
         productFeatured,
         getInitialProductsData,
         categoryFilterOptions,
         changeCategoryFilter,
-        changePriceFilter
+        changePriceFilter,
+        paginationProductsList,
+        productsListPage,
+        selectedPaginationProducts,
+        setSelectedPaginationProducts,
+        setSelectedPaginationToDefault,
     ])
 
     return (

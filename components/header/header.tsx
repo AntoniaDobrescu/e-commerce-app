@@ -5,22 +5,26 @@ import style from './header.module.scss';
 const Header = () => {
     return (
         <div className={style.headerContainer}>
-            <Image
-                priority
-                src="/images/logo.png"
-                className={style.logo}
-                height={35}
-                width={159}
-                alt={'logo'}
-            />
-            <Image
-                priority
-                src="/images/shoppingCart.png"
-                className={style.shoppingCart}
-                height={54}
-                width={54}
-                alt={'logo'}
-            />
+            <div className={style.logoContainer}>
+                <Image
+                    priority
+                    src="/images/logo.png"
+                    className={style.logo}
+                    // height={25}
+                    // width={159}
+                    alt={'logo'}
+                    layout={'fill'}
+                />
+            </div>
+            <div className={style.shoppingCartContainer}>
+                <Image
+                    priority
+                    src="/images/shoppingCart.png"
+                    className={style.shoppingCart}
+                    alt={'logo'}
+                    layout={'fill'}
+                />
+            </div>
         </div>
     );
 };
