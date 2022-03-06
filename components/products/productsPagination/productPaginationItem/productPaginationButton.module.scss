@@ -1,6 +1,17 @@
-.button {
+@import "styles/variables";
 
-  &--isSelected {
-    background: blue;
+.pageContainer {
+  .button {
+    border: none;
+    background-color: transparent;
+    color: $color-accent-5;
+    font-size: 29px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    cursor: pointer;
+
+    &--isSelected {
+      color: $color-accent-3;
+    }
   }
 }

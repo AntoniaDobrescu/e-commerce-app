@@ -3,6 +3,8 @@ import Product from '../product/product';
 import { useAppContext } from '../../context/productsContext';
 import style from './products.module.scss';
 import ProductsPagination from './productsPagination/productsPagination';
+import { ProductModel } from '../../models/models';
+import OrderController from '../orderController/orderController';
 
 const Products = () => {
     const {productsListPage} = useAppContext();
@@ -13,11 +15,16 @@ const Products = () => {
 
     return (
         <>
-            <div className={style.list}>
+            <div className={style.productList}>
+                <div className={style.wrapper}>
+                    <div className={style.productListTitle}>
+                        <span className={style.boldText}>Photography /</span>
+                        <span className={style.normalText}>Premium Photos</span>
+                    </div>
+                    <OrderController />
+                </div>
                 {
-                    // add index
-                    //create type for product
-                    productsListPage.map((product, i) => {
+                    productsListPage.map((product: ProductModel, i: number) => {
                         const {
                             name,
                             category,
@@ -45,7 +52,6 @@ const Products = () => {
                         )
                     })
                 }
-
             </div>
             <ProductsPagination/>
         </>

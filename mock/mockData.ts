@@ -31,7 +31,7 @@ export const mockData = {
         {
             "name": "Red Bench2",
             "category": "people",
-            "price": 3.89,
+            "price": 4.89,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -44,7 +44,7 @@ export const mockData = {
         {
             "name": "Red Bench3",
             "category": "people",
-            "price": 3.89,
+            "price": 5.89,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -57,7 +57,7 @@ export const mockData = {
         {
             "name": "Red Bench4",
             "category": "people",
-            "price": 3.89,
+            "price": 6.89,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -70,7 +70,7 @@ export const mockData = {
         {
             "name": "Red Bench5",
             "category": "people",
-            "price": 3.89,
+            "price": 7.89,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -84,6 +84,36 @@ export const mockData = {
             "name": "Egg Balloon",
             "category": "food",
             "price": 93.89,
+            "currency": "USD",
+            "image": null,
+            "bestseller": false,
+            "featured": false,
+            "details": null
+        },
+        {
+            "name": "Egg Balloon",
+            "category": "premium",
+            "price": 93.89,
+            "currency": "USD",
+            "image": null,
+            "bestseller": false,
+            "featured": false,
+            "details": null
+        },
+        {
+            "name": "Egg Balloon",
+            "category": "cities",
+            "price": 233.89,
+            "currency": "USD",
+            "image": null,
+            "bestseller": false,
+            "featured": false,
+            "details": null
+        },
+        {
+            "name": "Egg Balloon",
+            "category": "nature",
+            "price": 333.89,
             "currency": "USD",
             "image": null,
             "bestseller": false,
@@ -120,7 +150,7 @@ export const mockData = {
         {
             "name": "Samurai King Restling",
             "category": "pets",
-            "price": 101,
+            "price": 201,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -154,7 +184,7 @@ export const mockData = {
         {
             "name": "Samurai King Restling1",
             "category": "pets",
-            "price": 101,
+            "price": 401,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -188,7 +218,7 @@ export const mockData = {
         {
             "name": "Samurai King Restling2",
             "category": "pets",
-            "price": 101,
+            "price": 501,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -222,7 +252,7 @@ export const mockData = {
         {
             "name": "Samurai King Restling3",
             "category": "pets",
-            "price": 101,
+            "price": 601,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,
@@ -256,7 +286,7 @@ export const mockData = {
         {
             "name": "Samurai King Restling4",
             "category": "pets",
-            "price": 101,
+            "price": 701,
             "currency": "USD",
             "image": {
                 "src": mockPhoto,

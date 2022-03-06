@@ -3,11 +3,11 @@ import getDataMock from '../mock';
 import sortBy from 'lodash.sortby';
 
 //remove Props from Product
-import { PriceFilterModel, Product } from '../models/models';
+import { PriceFilterModel, ProductModel } from '../models/models';
 
 const AppContext = createContext(null);
 
-const filterByCategory = (categoryFilter: null | string[], productsList: Product[]): Product[] => {
+const filterByCategory = (categoryFilter: null | string[], productsList: ProductModel[]): ProductModel[] => {
     if (!categoryFilter || categoryFilter.length === 0) {
         return productsList;
     }
@@ -24,7 +24,7 @@ const filterByCategory = (categoryFilter: null | string[], productsList: Product
     return newProductList;
 };
 
-const filterByPrice = (priceFilter: null | PriceFilterModel, productsList: Product[]): Product[] => {
+const filterByPrice = (priceFilter: null | PriceFilterModel, productsList: ProductModel[]): ProductModel[] => {
     if (!priceFilter) {
         return productsList;
     }
@@ -36,17 +36,17 @@ const filterByPrice = (priceFilter: null | PriceFilterModel, productsList: Produ
     return newProducts;
 };
 
-const generateCategoriesByList = (productsList: Product[]): string[] => {
+const generateCategoriesByList = (productsList: ProductModel[]): string[] => {
     const categorySet = new Set();
 
-    productsList.forEach((product: Product) => {
+    productsList.forEach((product: ProductModel) => {
         categorySet.add(product.category);
     })
 
     return Array.from(categorySet) as string[];
 }
 
-const filterByRangeIndex = (productsList: Product[], selectedPaginationProducts: ProductPaginationItem): Product[] => {
+const filterByRangeIndex = (productsList: ProductModel[], selectedPaginationProducts: ProductPaginationItem): ProductModel[] => {
     return productsList.slice(selectedPaginationProducts.startIndex, selectedPaginationProducts.endIndex);
 }
 
@@ -72,7 +72,7 @@ type SortingDataObject = {
     type: SortType
 }
 
-const generateSortedProductsList = (productList: Product[], sortingDataObject: SortingDataObject) => {
+const generateSortedProductsList = (productList: ProductModel[], sortingDataObject: SortingDataObject) => {
     if (sortingDataObject) {
         if (sortingDataObject.direction === 'Ascending') {
             return sortBy(productList, [sortingDataObject.type === 'Price' ? 'price' : 'name'])
@@ -83,9 +83,9 @@ const generateSortedProductsList = (productList: Product[], sortingDataObject: S
 }
 
 export function AppWrapper({children}) {
-    const [productsList, setProductsList] = useState<Array<Product> | null>(null);
-    const [initialProductsList, setInitialProductsList] = useState<Array<Product> | null>(null);
-    const [productFeatured, setProductFeatured] = useState<Product | null>(null);
+    const [productsList, setProductsList] = useState<Array<ProductModel> | null>(null);
+    const [initialProductsList, setInitialProductsList] = useState<Array<ProductModel> | null>(null);
+    const [productFeatured, setProductFeatured] = useState<ProductModel | null>(null);
 
     const [categoryFilterOptions, setCategoryFilterOptions] = useState<string[] | null>(null);
     const [categoryFilter, setCategoryFilter] = useState([]);
@@ -95,7 +95,7 @@ export function AppWrapper({children}) {
     const [sortingDataObject, setSortingDataObject] = useState<SortingDataObject | null>(null);
 
     useEffect(() => {
-        setProductsList((currentProductList: Product[]) => {
+        setProductsList((currentProductList: ProductModel[]) => {
             return generateSortedProductsList(currentProductList, sortingDataObject)
         })
     }, [sortingDataObject])
@@ -140,7 +140,7 @@ export function AppWrapper({children}) {
 
     useEffect(() => {
         if (initialProductsList) {
-            let newProductsList: Product[];
+            let newProductsList: ProductModel[];
 
             newProductsList = filterByCategory(categoryFilter, initialProductsList);
             newProductsList = filterByPrice(priceFilter, newProductsList);

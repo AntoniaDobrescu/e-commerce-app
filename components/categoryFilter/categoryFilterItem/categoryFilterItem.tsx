@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import { CategoryOption } from '../categoryFilter';
+import style from './categoryFilterItem.module.scss';
 
 interface Props {
     categoryOption: CategoryOption,
@@ -18,9 +19,20 @@ const CategoryFilterItem: FC<Readonly<Props>> = (
     }, [])
 
     return (
-        <li>
-            <input onChange={handleChange} id={value} type="checkbox" checked={isSelected}/>
-            <label htmlFor={value}>{value}</label>
+        <li className={style.categoryFilterItem}>
+            <input
+                onChange={handleChange}
+                id={value}
+                type="checkbox"
+                checked={isSelected}
+                className={style.categoryFilterItemCheckbox}
+            />
+            <label
+                htmlFor={value}
+                className={style.categoryFilterItemLabel}
+            >
+                {value}
+            </label>
         </li>
     );
 };

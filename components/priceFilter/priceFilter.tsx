@@ -2,6 +2,8 @@ import React, { FC, useCallback, useEffect, useState } from 'react';
 import { defaultPriceOptions } from '../../constants/filter';
 import { PriceFilterModel } from '../../models/models';
 import PriceFilterItem from './priceFilterItem/priceFilterItem';
+import style from './priceFilter.module.scss';
+
 
 export interface PriceOption extends PriceFilterModel {
     isChecked: boolean;
@@ -57,16 +59,21 @@ const PriceFilter: FC<Readonly<Props>> = (
     }, [priceOptions])
 
     return (
-        <div>
-            <div>-------------</div>
+        <div className={style.priceFilterContainer}>
+            <div className={style.priceRangeTitle}>Price range</div>
             <ul>
-                {priceOptions.map(price => <PriceFilterItem
-                    key={price.label}
-                    priceOption={price}
-                    onHandleChange={onHandleChange}
-                />)}
+                {priceOptions.map(price =>
+                    {
+                        return (
+                            <PriceFilterItem
+                                key={price.label}
+                                priceOption={price}
+                                onHandleChange={onHandleChange}
+                            />
+                        );
+                    }
+                )}
             </ul>
-            <div>-------------</div>
         </div>
     );
 };

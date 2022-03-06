@@ -5,7 +5,17 @@
   height: 240px;
   max-width: 386px;
   width: 100%;
-  margin-top: 35px;
+  margin: 35px auto 0;
+
+  @media (min-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 100%;
+    height: 440px;
+  }
+
+  @media (min-width: $breakpoint-tablet) {
+
+  }
 }
 
 .recommendationsImage {
@@ -18,10 +28,16 @@
   box-sizing: border-box;
   padding: 32px 18px 49px;
   border-bottom: 4px solid $color-accent-1;
-  //width: 100%;
+  width: 100%;
   margin: 0 auto;
 
-  max-width: 386px;
+  @media (min-width: $breakpoint-tablet) {
+    width: 100%;
+  }
+
+  @media (min-width: $breakpoint-desktop) {
+    position: relative;
+  }
 }
 
 .productFeaturedTitle {
@@ -49,6 +65,7 @@
 }
 
 .button {
+  position: relative;
   box-sizing: border-box;
   background-color: $color-accent-3;
   color: $color-accent-2;
@@ -59,6 +76,80 @@
   align-items: center;
   justify-content: center;
   padding: 17px 43px;
+  max-width: 386px;
   width: 100%;
-  margin-top: 30px;
+  margin: 30px auto;
+
+  @media (min-width: $breakpoint-desktop) {
+    position: absolute;
+    top: 30px;
+    right: 18px;
+    width: 257px;
+    height: 47px;
+    margin: 0;
+  }
+}
+
+.descriptionText,
+.descriptionTitle,
+.recommendationTitle,
+.detailsSize {
+  font-family: $main-font;
+}
+
+.recommendationTitle,
+.descriptionTitle,
+.detailsTitle,
+.detailsSize {
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.recommendationTitle,
+.descriptionTitle,
+.detailsTitle {
+  font-weight: 700;
+}
+
+.descriptionTitle {
+  margin-bottom: 50px;
+
+  @media (min-width: $breakpoint-desktop) {
+    margin-top: 30px;
+  }
+}
+
+.descriptionText {
+  font-size: 18px;
+  line-height: 27px;
+  color: $color-accent-4;
+}
+
+.recommendationTitle,
+.detailsTitle {
+  margin: 30px 0;
+}
+
+.recommendationsImage {
+  width: 97px;
+  height: 123px;
+  margin-right: 25px;
+}
+
+.recommendationsImagesContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.detailsSize {
+  color: $color-dim-gray;
+  font-weight: 400;
+}
+
+.descriptionDetailsWrapper {
+  @media (min-width: $breakpoint-desktop) {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 }

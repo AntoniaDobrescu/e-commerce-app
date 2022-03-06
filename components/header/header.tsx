@@ -10,8 +10,6 @@ const Header = () => {
                     priority
                     src="/images/logo.png"
                     className={style.logo}
-                    // height={25}
-                    // width={159}
                     alt={'logo'}
                     layout={'fill'}
                 />

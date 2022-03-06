@@ -2,7 +2,7 @@ import React from 'react';
 import { useAppContext } from '../../context/productsContext';
 import style from './productFeatured.module.scss';
 import Image from 'next/image';
-import { ItemRecommendation, Product } from '../../models/models';
+import { ItemRecommendation, ProductModel } from '../../models/models';
 
 const ProductFeatured = () => {
     const {productFeatured} = useAppContext();
@@ -15,7 +15,7 @@ const ProductFeatured = () => {
         name,
         image,
         details,
-    }: Product = productFeatured;
+    }: ProductModel = productFeatured;
 
     return (
         <div className={style.productFeaturedContainer}>
@@ -29,34 +29,40 @@ const ProductFeatured = () => {
                         layout={'fill'}
 
                     />
+                    <span className={style.text}>Photo of the day</span>
                 </div>
-                <span className={style.text}>Photo of the day</span>
             </div>
             <button className={style.button}>ADD TO CART</button>
-            <div>
-                <div>`About the ${name}`</div>
-                <p>{details.description}</p>
-            </div>
-            <div className={style.recommendationContainer}>
-                <div>People also buy</div>
-                {details.recommendations.map((item: ItemRecommendation, i: number) => {
-                    return (
-                        <div className={style.recommendationsImage}>
-                           <Image
-                               key={i}
-                               src={item.src}
-                               alt={item.alt}
-                               layout={'fill'}
-                           />
-                        </div>
-                    );
-                }) }
-            </div>
-            <div className={style.detailsContainer}>
-                <div className={style.detailsTitle}>Details</div>
+            <div className={style.descriptionDetailsWrapper}>
+                <div className={style.descriptionContainer}>
+                    <div className={style.descriptionTitle}>About the {name}</div>
+                    <p className={style.descriptionText}>{details.description}</p>
+                </div>
                 <div>
-                    <div>Size: ${details.dimensions.width} x ${details.dimensions.height}</div>
-                    <div>Size: ${details.size/1000}</div>
+                    <div className={style.recommendationContainer}>
+                        <div className={style.recommendationTitle}>People also buy</div>
+                        <div className={style.recommendationsImagesContainer}>
+                            {details.recommendations.map((item: ItemRecommendation, i: number) => {
+                                return (
+                                    <div className={style.recommendationsImage} key={i}>
+                                       <Image
+                                           key={i}
+                                           src={item.src}
+                                           alt={item.alt}
+                                           layout={'fill'}
+                                       />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                    <div className={style.detailsContainer}>
+                        <div className={style.detailsTitle}>Details</div>
+                        <div className={style.detailsContent}>
+                            <div className={style.detailsSize}>Size: ${details.dimensions.width} x ${details.dimensions.height} pixel</div>
+                            <div className={style.detailsSize}>Size: ${details.size/1000} mb</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

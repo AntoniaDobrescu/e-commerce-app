@@ -1,0 +1,14 @@
+@import "styles/variables";
+
+.categoryTitle {
+  font-family: $main-font;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 24px;
+  margin-bottom: 40px;
+}
+
+.categoryFilterContainer {
+  width: 268px;
+  border-bottom: 1px solid $color-accent-5;
+}

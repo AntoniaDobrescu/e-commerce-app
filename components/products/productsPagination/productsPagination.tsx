@@ -1,6 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
 import { ProductPaginationItem, useAppContext } from '../../../context/productsContext';
 import ProductPaginationButton from './productPaginationItem/productPaginationButton';
+import style from './productsPagination.module.scss';
+import Image from 'next/image';
+import classNames from 'classnames';
 
 const ProductsPagination = () => {
     const {paginationProductsList, selectedPaginationProducts, setSelectedPaginationProducts} = useAppContext();
@@ -43,19 +46,54 @@ const ProductsPagination = () => {
     }, [selectedPaginationProducts, paginationProductsList])
 
     return (
-        <div>
-            <button onClick={handleClickPreviousPage} disabled={isPreviousDisabled}> prev </button>
-            <ul>
-                {paginationProductsList.map((productPaginationItem: ProductPaginationItem) => {
-                    return <ProductPaginationButton
-                        key={productPaginationItem.label}
-                        productPaginationItem={productPaginationItem}
-                        onHandleClick={onHandleClick}
-                        selectedPaginationProducts={selectedPaginationProducts}
+        <div className={style.paginationContainer}>
+            <button
+                onClick={handleClickPreviousPage}
+                disabled={isPreviousDisabled}
+                // className={style.arrowButton}
+                className={classNames(style.arrowButton, {
+                    [style['disabled']]: isPreviousDisabled
+                })}
+            >
+                <div className={style.arrowContainerLeft}>
+                    <Image
+                        priority
+                        src="/images/arrow.png"
+                        className={style.arrow}
+                        alt={'logo'}
+                        layout={'fill'}
                     />
+                </div>
+            </button>
+            <ul className={style.pagesContainer}>
+                {paginationProductsList.map((productPaginationItem: ProductPaginationItem) => {
+                    return (
+                         <ProductPaginationButton
+                            key={productPaginationItem.label}
+                            productPaginationItem={productPaginationItem}
+                            onHandleClick={onHandleClick}
+                            selectedPaginationProducts={selectedPaginationProducts}
+                        />
+                    );
                 })}
             </ul>
-            <button onClick={handleClickNextPage} disabled={isNextDisabled}> next </button>
+            <button
+                onClick={handleClickNextPage}
+                disabled={isNextDisabled}
+                className={classNames(style.arrowButton, {
+                    [style['disabled']]: isPreviousDisabled
+                })}
+            >
+                <div className={style.arrowContainerRight}>
+                    <Image
+                        priority
+                        src="/images/arrow.png"
+                        className={style.arrow}
+                        alt={'logo'}
+                        layout={'fill'}
+                    />
+                </div>
+            </button>
         </div>
     );
 };

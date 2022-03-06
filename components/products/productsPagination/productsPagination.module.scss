@@ -1,0 +1,40 @@
+@import "styles/variables";
+
+.arrowContainerLeft,
+.arrowContainerRight {
+  position: relative;
+  width: 10px;
+  height: 14px;
+  font-size: 13px;
+}
+
+.arrowContainerLeft {
+  transform: rotate(180deg);
+}
+
+.paginationContainer,
+.pagesContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.arrowButton,
+.disabled {
+  background-color: transparent;
+  border: none;
+}
+
+.arrowButton {
+  cursor: pointer;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.paginationContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 30px;
+}

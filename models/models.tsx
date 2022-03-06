@@ -20,7 +20,7 @@ export interface Details {
     readonly recommendations: ItemRecommendation[];
 }
 
-export interface Product {
+export interface ProductModel {
     readonly name: string;
     readonly category: string;
     readonly price: number;

@@ -23,7 +23,7 @@ const ProductPaginationButton: FC<Readonly<Props>> = (
         onHandleClick(productPaginationItem)
     }
     return (
-        <li >
+        <li className={style.pageContainer}>
             <button className={classNames(style.button, {
                 [style['button--isSelected']]: selectedPaginationProducts.label === productPaginationItem.label
             })} onClick={handleClick}>{label}</button>

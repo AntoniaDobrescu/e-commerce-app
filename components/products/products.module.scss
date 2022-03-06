@@ -1,3 +1,51 @@
-.list {
-  display: flex;
+@import "styles/variables";
+
+.productList {
+  box-sizing: border-box;
+  padding: 32px 18px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: $breakpoint-mobile) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.wrapper {
+    width: 100%;
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+}
+
+.productListTitle {
+  margin-bottom: 30px;
+  max-width: 326px;
+
+  @media (min-width: $breakpoint-mobile) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+.boldText,
+.normalText {
+  font-family: $main-font;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.boldText {
+  font-weight: 700;
+
+}
+
+.normalText {
+  font-weight: 400;
+  color: $color-accent-4;
 }

@@ -1,10 +1,7 @@
 import Head from 'next/head'
-import Layout, { siteTitle } from '../components/layout'
+import Layout from '../components/layout'
 import { getSortedPostsData } from '../lib/posts'
-import Link from 'next/link'
-import Date from '../components/date'
 import { GetStaticProps } from 'next'
-import Image from 'next/image';
 import Products from '../components/products/products';
 import React, { useEffect } from 'react';
 import { useAppContext } from '../context/productsContext';
@@ -12,10 +9,11 @@ import ProductFeatured from '../components/productFeatured/productFeatured';
 import CategoryFilter from '../components/categoryFilter/categoryFilter';
 import PriceFilter from '../components/priceFilter/priceFilter';
 import OrderController from '../components/orderController/orderController';
+import style from './index.module.scss';
 
 export default function Home({
-                                 allPostsData
-                             }: {
+    allPostsData
+}:{
     allPostsData: {
         date: string
         title: string
@@ -36,33 +34,33 @@ export default function Home({
     return (
         <Layout home>
             <Head>
-                <title>test</title>
+                <title>e-commerce</title>
             </Head>
-            <section>
-                {/*<ProductFeatured />*/}
+            <section className={style.productFeaturedContainer}>
+                <ProductFeatured />
             </section>
-            <section>
-                {
-                    categoryFilterOptions
-                    ? <CategoryFilter
-                            categoryFilterOptions={categoryFilterOptions}
-                            changeCategoryFilter={changeCategoryFilter}
-                            setSelectedPaginationToDefault={setSelectedPaginationToDefault}
-                        />
-                        : null
-                }
-            </section>
+            <section className={style.filterOrderProductsContainer}>
+                <div className={style.filterContainer}>
+                    {
+                        categoryFilterOptions
+                        ?
+                            <CategoryFilter
+                                categoryFilterOptions={categoryFilterOptions}
+                                changeCategoryFilter={changeCategoryFilter}
+                                setSelectedPaginationToDefault={setSelectedPaginationToDefault}
+                            />
+                        :
+                            null
+                    }
+                    <PriceFilter
+                        setSelectedPaginationToDefault={setSelectedPaginationToDefault}
+                        changePriceFilter={changePriceFilter}
+                    />
 
-            <section>
-                <PriceFilter
-                    setSelectedPaginationToDefault={setSelectedPaginationToDefault}
-                    changePriceFilter={changePriceFilter}
-                />
-            </section>
-
-            <section>
-                <OrderController />
-                <Products/>
+                </div>
+                <div>
+                    <Products/>
+                </div>
             </section>
         </Layout>
     )

@@ -1,5 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import { PriceOption } from '../priceFilter';
+import style from './priceFilterItem.module.scss';
 
 interface Props {
     priceOption: PriceOption;
@@ -19,9 +20,20 @@ const PriceFilterItem:FC<Readonly<Props>> = (
     }, [])
 
     return (
-        <li>
-            <input onChange={handleChange} id={label} type="checkbox" checked={isChecked}/>
-            <label htmlFor={label}>{label}</label>
+        <li className={style.priceFilterItem}>
+            <input
+                onChange={handleChange}
+                id={label}
+                type="checkbox"
+                checked={isChecked}
+                className={style.priceFilterItemCheckbox}
+            />
+            <label
+                htmlFor={label}
+                className={style.priceFilterItemLabel}
+            >
+                {label}
+            </label>
         </li>
     );
 };

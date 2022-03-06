@@ -1,0 +1,22 @@
+@import "styles/variables";
+
+.filterContainer {
+  display: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: block;
+  }
+}
+
+.productFeaturedContainer {
+  margin-bottom: 30px;
+
+
+}
+
+.filterOrderProductsContainer {
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    flex-direction: row;
+  }
+}

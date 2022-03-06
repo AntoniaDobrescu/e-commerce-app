@@ -1,0 +1,49 @@
+@import "styles/variables";
+
+.upAndDown {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.upAndDownButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.orderControllerText {
+  font-family: $main-font;
+  font-size: 22px;
+  line-height: 24px;
+  color: $color-accent-5;
+
+  @media (min-width: $breakpoint-tablet) {
+    width: 75px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.orderControllerSelect {
+  border: none;
+  cursor: pointer;
+
+  &:active, &:focus {
+    outline: none;
+  }
+}
+
+.orderControllerOptionText {
+  font-size: 22px;
+}
+
+.orderControllerContainer {
+  display: none;
+
+  @media (min-width: $breakpoint-tablet) {
+    display: flex;
+    flex-direction: row;
+  }
+}

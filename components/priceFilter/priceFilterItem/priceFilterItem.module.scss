@@ -1,0 +1,27 @@
+@import "styles/variables";
+
+.priceFilterItemCheckbox {
+  accent-color: $color-accent-2;
+  border: 1px solid $color-accent-3;
+  width: 23px;
+  height: 23px;
+  margin-right: 23px;
+
+  &:checked {
+    outline: 1px solid $color-accent-3;
+  }
+}
+
+.priceFilterItemLabel {
+  font-size: 22px;
+  line-height: 24px;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-family: $main-font;
+}
+
+.priceFilterItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}

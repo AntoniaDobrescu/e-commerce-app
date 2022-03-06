@@ -1,5 +1,6 @@
 import React, { FC, memo, useCallback, useEffect, useState } from 'react';
 import CategoryFilterItem from './categoryFilterItem/categoryFilterItem';
+import style from './categoryFilter.module.scss';
 
 export interface CategoryOption {
     value: string,
@@ -60,14 +61,20 @@ const CategoryFilter: FC<Readonly<Props>> = memo((
     }, [categoryOptions])
 
     return (
-        <div>
+        <div className={style.categoryFilterContainer}>
+            <div className={style.categoryTitle}>Category</div>
             <ul>
-                {categoryOptions.map(category => <CategoryFilterItem
-                    key={category.value}
-                    categoryOption={category}
-                    onHandleChange={onHandleChange}
-                />)}
-
+                {categoryOptions.map(category =>
+                    {
+                        return (
+                            <CategoryFilterItem
+                                key={category.value}
+                                categoryOption={category}
+                                onHandleChange={onHandleChange}
+                            />
+                        );
+                    })
+                }
             </ul>
         </div>
     );
